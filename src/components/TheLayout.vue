@@ -5,7 +5,7 @@
             <b-container fluid>
                 <b-row>
                     <b-col>
-                        <h1 class="h4 mb-4">Track new company</h1>
+                        <h1 class="h4 mb-4">{{ viewTitle }}</h1>
                     </b-col>
                 </b-row>
                 <b-row>
@@ -23,6 +23,12 @@ export default {
     name: "TheLayout",
     components: {
         TheNavbar,
+    },
+    props: {
+        viewTitle: {
+            type: String,
+            default: "Companies Stock Data",
+        },
     },
 };
 </script>
