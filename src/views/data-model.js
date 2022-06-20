@@ -106,6 +106,7 @@ export default {
             this.chosenCompany = additionalData;
 
             this.saveToStorage();
+            this.$router.push("/company-list");
         },
         saveToStorage() {
             const observedCompanies = getDataFromStorage("chosenCompanies");
