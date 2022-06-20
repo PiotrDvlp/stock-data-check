@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TheLayout from "./components/TheNavbar";
+import TheLayout from "./components/TheLayout";
 
 export default {
     name: "App",

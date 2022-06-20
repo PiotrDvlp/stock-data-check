@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import TheNavbar from "./components/TheNabvar";
+import TheNavbar from "./TheNavbar.vue";
 
 export default {
     name: "TheLayout",
