@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import TheNavbar from "@/components/TheNabvar";
+import TheNavbar from "./components/TheNabvar";
 
 export default {
     name: "TheLayout",

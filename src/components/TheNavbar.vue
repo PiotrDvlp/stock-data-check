@@ -8,8 +8,8 @@
 
                 <b-collapse id="nav-text-collapse" is-nav>
                     <b-navbar-nav>
-                        <b-nav-item href="#">Track New Company</b-nav-item>
-                        <b-nav-item href="#">Companies</b-nav-item>
+                        <router-link to="/">Track New Company</router-link> |
+                        <router-link to="/companies">Companies</router-link>
                     </b-navbar-nav>
                 </b-collapse>
             </b-container>
