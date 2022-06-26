@@ -1,8 +1,9 @@
+import axios from "axios";
 const apiKey = process.env.VUE_APP_ALPHA_VANTAGE_KEY;
 
 class ApiService {
     constructor() {
-        const service = this.$http.create();
+        const service = axios.create();
 
         this.service = service;
     }

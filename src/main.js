@@ -1,17 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import axios from "axios";
 import { BootstrapVue } from "bootstrap-vue";
 import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.config.productionTip = false;
-
-Vue.prototype.$http = axios;
-Vue.prototype.$http.defaults.headers.common["X-Requested-With"] =
-    "XMLHttpRequest";
 
 Vue.component("vue-bootstrap-typeahead", VueBootstrapTypeahead);
 
