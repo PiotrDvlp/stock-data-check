@@ -5,6 +5,7 @@
                 <ul>
                     <company-list-item
                         v-for="company in chosenCompanies"
+                        :company="company"
                         :key="company.uuid"
                     ></company-list-item>
                 </ul>
@@ -24,23 +25,3 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.company-data {
-    &__logo {
-        margin-right: 10px;
-    }
-
-    &__info {
-        padding: 0 4px;
-        font-size: 14px;
-
-        &--big {
-            font-size: 18px;
-        }
-
-        &--bold {
-            font-weight: bold;
-        }
-    }
-}
-</style>
