@@ -1,6 +1,6 @@
 <template>
     <b-col>
-        <data-model>
+        <company-list-model>
             <template v-slot="{ chosenCompanies }">
                 <ul>
                     <company-list-item
@@ -10,18 +10,18 @@
                     ></company-list-item>
                 </ul>
             </template>
-        </data-model>
+        </company-list-model>
     </b-col>
 </template>
 
 <script>
-import DataModel from "./data-model";
+import CompanyListModel from "./company-list-model";
 import CompanyListItem from "../components/CompanyListItem.vue";
 export default {
     name: "CompanyList",
     components: {
         CompanyListItem,
-        DataModel,
+        CompanyListModel,
     },
 };
 </script>
