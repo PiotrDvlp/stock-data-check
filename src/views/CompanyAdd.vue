@@ -1,6 +1,6 @@
 <template>
     <b-col cols="3">
-        <data-model :filter="companySymbol">
+        <form-data-model :filter="companySymbol">
             <template v-slot="{ addCompany, companies, selectCompany }">
                 <b-form @submit.prevent="addCompany">
                     <b-form-group
@@ -35,17 +35,17 @@
                     >
                 </b-form>
             </template>
-        </data-model>
+        </form-data-model>
     </b-col>
 </template>
 
 <script>
-import DataModel from "./data-model";
+import FormDataModel from "./form-data-model";
 
 export default {
     name: "CompanyAdd",
     components: {
-        DataModel,
+        FormDataModel,
     },
     data() {
         return {
