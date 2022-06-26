@@ -1,7 +1,7 @@
+import ApiService from "../services/api-service";
 import { debounce } from "lodash";
 import { v4 as uuidv4 } from "uuid";
 
-const apiKey = process.env.VUE_APP_ALPHA_VANTAGE_KEY;
 const formatKey = (str) => str.substring(str.indexOf(" ") + 1);
 const renameKeys = (obj) =>
     Object.keys(obj).reduce(
@@ -23,7 +23,6 @@ export default {
     data() {
         return {
             additionalData: null,
-            api: this.$http.create(),
             bestMatches: [],
             chosenCompanies: null,
             chosenCompany: null,
@@ -55,11 +54,11 @@ export default {
         },
         async findCompanyBySymbol(symbol) {
             try {
-                const response = await this.api.get(
-                    `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${symbol}&apikey=${apiKey}`
+                const getCompanyData = await ApiService.getCompanyBySymbol(
+                    symbol
                 );
 
-                this.bestMatches = response.data.bestMatches;
+                this.bestMatches = getCompanyData.data.bestMatches;
                 this.error = null;
             } catch (error) {
                 this.bestMatches = [];
@@ -68,12 +67,11 @@ export default {
         },
         async findAdditionalData(companyName) {
             try {
-                const getClearbitData = this.api.get(
-                    `https://autocomplete.clearbit.com/v1/companies/suggest?query=${companyName}`
+                const getClearbitData = ApiService.getClearbitData(companyName);
+                const getAlphavData = ApiService.getAlphavData(
+                    this.chosenCompany.symbol
                 );
-                const getAlphavData = this.api.get(
-                    `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${this.chosenCompany.symbol}&apikey=${apiKey}`
-                );
+
                 const [clearbitResponse, alphaVResponse] = await Promise.all([
                     getClearbitData,
                     getAlphavData,
