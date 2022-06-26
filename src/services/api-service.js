@@ -25,6 +25,12 @@ class ApiService {
             `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`
         );
     }
+
+    getAlphavInterday(symbol) {
+        return this.service.get(
+            `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`
+        );
+    }
 }
 
 export default new ApiService();
