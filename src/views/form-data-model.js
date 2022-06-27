@@ -1,20 +1,11 @@
 import ApiService from "../services/api-service";
 import { debounce } from "lodash";
 import { v4 as uuidv4 } from "uuid";
-
-const formatKey = (str) => str.substring(str.indexOf(" ") + 1);
-const renameKeys = (obj) =>
-    Object.keys(obj).reduce(
-        (acc, key) => ({
-            ...acc,
-            ...{ [formatKey(key)]: obj[key] },
-        }),
-        {}
-    );
-const addDataToStorage = (storageKey, data) =>
-    localStorage.setItem(storageKey, JSON.stringify(data));
-const getDataFromStorage = (storageKey) =>
-    JSON.parse(localStorage.getItem(storageKey));
+import {
+    addDataToStorage,
+    getDataFromStorage,
+} from "../helpers/storage-helpers";
+import { renameKeys } from "../helpers/object-helpers";
 
 export default {
     props: {

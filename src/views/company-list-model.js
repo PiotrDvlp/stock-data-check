@@ -1,20 +1,9 @@
 import ApiService from "../services/api-service";
-import { camelCase } from "lodash";
-
-const formatKey = (str) => camelCase(str.substring(str.indexOf(" ") + 1));
-const renameKeys = (obj) =>
-    Object.keys(obj).reduce(
-        (acc, key) => ({
-            ...acc,
-            ...{ [formatKey(key)]: obj[key] },
-        }),
-        {}
-    );
-const getDataFromStorage = (storageKey) =>
-    JSON.parse(localStorage.getItem(storageKey));
-
-const addDataToStorage = (storageKey, data) =>
-    localStorage.setItem(storageKey, JSON.stringify(data));
+import {
+    addDataToStorage,
+    getDataFromStorage,
+} from "../helpers/storage-helpers";
+import { renameKeys } from "../helpers/object-helpers";
 
 export default {
     data() {
