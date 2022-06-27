@@ -1,12 +1,13 @@
 <template>
-    <b-col>
+    <b-col cols="4">
         <company-list-model>
-            <template v-slot="{ chosenCompanies }">
-                <ul>
+            <template v-slot="{ chosenCompanies, removeFromList }">
+                <ul class="company__list">
                     <company-list-item
                         v-for="company in chosenCompanies"
                         :company="company"
                         :key="company.uuid"
+                        @remove-company="removeFromList"
                     ></company-list-item>
                 </ul>
             </template>
@@ -25,3 +26,10 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+.company {
+    &__list {
+        padding: 0;
+    }
+}
+</style>

@@ -1,5 +1,16 @@
 <template>
-    <li class="company-data d-flex flex-row">
+    <li
+        class="company-data d-flex flex-row py-2"
+        @mouseover="showRemoveOption = true"
+        @mouseleave="showRemoveOption = false"
+    >
+        <span
+            v-show="showRemoveOption"
+            class="company-data__remove"
+            @click="removeCompany"
+        >
+            <b-icon-x-lg class=""></b-icon-x-lg>
+        </span>
         <div class="company-data__logo">
             <b-img :src="setImage" fluid />
         </div>
@@ -44,6 +55,11 @@ export default {
             type: Object,
         },
     },
+    data() {
+        return {
+            showRemoveOption: false,
+        };
+    },
     computed: {
         setImage() {
             return this.company.logo
@@ -51,12 +67,22 @@ export default {
                 : "https://via.placeholder.com/64x64";
         },
     },
+    methods: {
+        removeCompany() {
+            this.$emit("remove-company", this.company.uuid);
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .company-data {
+    position: relative;
+
     &__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-right: 10px;
         width: 64px;
         height: 64px;
@@ -73,6 +99,14 @@ export default {
         &--bold {
             font-weight: bold;
         }
+    }
+
+    &__remove {
+        padding: 5px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
     }
 }
 </style>
