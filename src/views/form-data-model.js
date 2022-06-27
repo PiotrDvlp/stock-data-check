@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             bestMatches: [],
-            chosenCompanies: null,
+            chosenCompanies: [],
             chosenCompany: null,
             error: null,
         };
@@ -61,10 +61,19 @@ export default {
             }
         },
         addCompany() {
+            const isCompanyAlreadyPresent = this.chosenCompanies.some(
+                ({ symbol }) => this.chosenCompany.symbol === symbol
+            );
             const companyName = this.chosenCompany.name.replace(
                 /[^a-z0-9]+/gi,
                 ""
             );
+
+            if (isCompanyAlreadyPresent) {
+                console.error("Company is already present");
+
+                return;
+            }
 
             this.getAdditionalCompanyData(companyName);
         },
@@ -112,16 +121,6 @@ export default {
             if (!this.chosenCompanies) {
                 addDataToStorage("chosenCompanies", [this.chosenCompany]);
             } else {
-                const isCompanyAlreadyPresent = this.chosenCompanies.some(
-                    ({ symbol }) => this.chosenCompany.symbol === symbol
-                );
-
-                if (isCompanyAlreadyPresent) {
-                    console.error("Company is already present");
-
-                    return;
-                }
-
                 addDataToStorage("chosenCompanies", [
                     ...this.chosenCompanies,
                     this.chosenCompany,

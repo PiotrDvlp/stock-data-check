@@ -19,12 +19,12 @@ const addDataToStorage = (storageKey, data) =>
 export default {
     data() {
         return {
-            chosenCompanies: null,
+            chosenCompanies: [],
             error: null,
         };
     },
     created() {
-        const savedCompanies = getDataFromStorage("chosenCompanies");
+        const savedCompanies = getDataFromStorage("chosenCompanies") ?? [];
 
         if (savedCompanies.length) {
             this.chosenCompanies = savedCompanies;
