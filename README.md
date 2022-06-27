@@ -4,7 +4,13 @@
 ```
 yarn install
 ```
+## Enviorment key
+```
+Before using app, please visit: https://www.alphavantage.co/support/#api-key, and create your personal API Key.
 
+Use the generated key in the `.env.development` file, in the VUE_APP_ALPHA_VANTAGE_KEY field.
+
+```
 ### Compiles and hot-reloads for development
 ```
 yarn serve
@@ -19,6 +25,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
