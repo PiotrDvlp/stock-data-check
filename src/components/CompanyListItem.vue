@@ -17,7 +17,7 @@
         <div class="company-data__details">
             <div class="company-data__name">
                 <span
-                    class="company-data__info company-data__info--bold company-data__info--big"
+                    class="company-data__info company-data__info--bold compaenvny-data__info--big"
                     >{{ company.name }}</span
                 >
                 <span class="company-data__info">{{ company.symbol }}</span>
@@ -32,15 +32,14 @@
             </div>
             <div class="company-data__stock">
                 <span class="company-data__info company-data__info--bold"
-                    >{{ company.price }} {{ company.currency }}</span
+                    >{{ parseNumber.price }} {{ company.currency }}</span
                 >
+                <span :class="classObject" class="company-data__info"
+                    >{{ parseNumber.change }} ({{ company.changePercent }})
+                    <component :is="setArrow"></component
+                ></span>
                 <span class="company-data__info"
-                    >{{ company.change }} ({{
-                        company["change percent"]
-                    }})</span
-                >
-                <span class="company-data__info"
-                    >Closed: {{ company["latest trading day"] }}</span
+                    >Closed: {{ company.latestTradingDay }}</span
                 >
             </div>
         </div>
@@ -65,6 +64,24 @@ export default {
             return this.company.logo
                 ? this.company.logo
                 : "https://via.placeholder.com/64x64";
+        },
+        parseNumber() {
+            return {
+                change: parseFloat(this.company.change),
+                price: parseFloat(this.company.price),
+            };
+        },
+        getChange() {
+            return this.parseNumber.change > 0;
+        },
+        classObject() {
+            return {
+                "company-data__info--green": this.getChange,
+                "company-data__info--red": !this.getChange,
+            };
+        },
+        setArrow() {
+            return this.getChange ? "b-icon-arrow-up" : "b-icon-arrow-down";
         },
     },
     methods: {
@@ -98,6 +115,14 @@ export default {
 
         &--bold {
             font-weight: bold;
+        }
+
+        &--green {
+            color: #00cc00;
+        }
+
+        &--red {
+            color: #ff0000;
         }
     }
 
