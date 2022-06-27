@@ -29,7 +29,7 @@ export default {
         };
     },
     created() {
-        const savedCompanies = getDataFromStorage("chosenCompanies");
+        const savedCompanies = getDataFromStorage("chosenCompanies") ?? [];
 
         if (savedCompanies.length) {
             this.chosenCompanies = savedCompanies;

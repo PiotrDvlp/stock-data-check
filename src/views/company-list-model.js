@@ -13,6 +13,9 @@ const renameKeys = (obj) =>
 const getDataFromStorage = (storageKey) =>
     JSON.parse(localStorage.getItem(storageKey));
 
+const addDataToStorage = (storageKey, data) =>
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
 export default {
     data() {
         return {
@@ -74,11 +77,21 @@ export default {
 
                 return updated ? Object.assign(company, updated) : company;
             });
+
+            addDataToStorage("chosenCompanies", this.chosenCompanies);
+        },
+        removeCompany(id) {
+            this.chosenCompanies = this.chosenCompanies.filter(
+                ({ uuid }) => uuid !== id
+            );
+
+            addDataToStorage("chosenCompanies", this.chosenCompanies);
         },
     },
     render() {
         return this.$scopedSlots.default({
             chosenCompanies: this.chosenCompanies,
+            removeFromList: this.removeCompany,
         });
     },
 };
