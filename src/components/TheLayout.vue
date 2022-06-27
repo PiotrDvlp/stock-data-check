@@ -24,12 +24,6 @@ export default {
     components: {
         TheNavbar,
     },
-    props: {
-        viewTitle: {
-            type: String,
-            default: "Companies Stock Data",
-        },
-    },
     computed: {
         setTitle() {
             return this.$route.name === "CompanyAdd"
