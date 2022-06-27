@@ -5,7 +5,7 @@
             <b-container fluid>
                 <b-row>
                     <b-col>
-                        <h1 class="h4 mb-4">{{ viewTitle }}</h1>
+                        <h1 class="h4 mb-4">{{ setTitle }}</h1>
                     </b-col>
                 </b-row>
                 <b-row>
@@ -28,6 +28,13 @@ export default {
         viewTitle: {
             type: String,
             default: "Companies Stock Data",
+        },
+    },
+    computed: {
+        setTitle() {
+            return this.$route.name === "CompanyAdd"
+                ? "Track new company"
+                : "Companies";
         },
     },
 };

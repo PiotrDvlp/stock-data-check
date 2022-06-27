@@ -8,10 +8,12 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: "/",
+        name: "CompanyAdd",
         component: CompanyAdd,
     },
     {
         path: "/company-list",
+        name: "CompanyList",
         component: CompanyList,
     },
 ];
