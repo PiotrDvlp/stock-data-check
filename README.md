@@ -2,6 +2,8 @@
 
 Company search engine and stock data observation.
 
+A working demo can be found here: <a href="https://piotrdvlp.github.io/stock-data-check/">Stock Data Check</a>
+
 ## Quick start
 Before using app, please visit: https://www.alphavantage.co/support/#api-key, to create your personal API Key.
 
