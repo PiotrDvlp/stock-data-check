@@ -15,7 +15,8 @@ jobs:
         env:
           VUE_APP_ALPHA_VANTAGE_KEY: ${{ secrets.VUE_APP_ALPHA_VANTAGE_KEY }}
           VUE_APP_TITLE: ${{ secrets.VUE_APP_TITLE }}
-        run: echo "$VUE_APP_ALPHA_VANTAGE_KEY"
+        run: |
+          echo ${{ secrets.VUE_APP_ALPHA_VANTAGE_KEY }}
 
       - name: Build 🔧
         run: |
