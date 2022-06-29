@@ -34,13 +34,13 @@
                 <span
                     v-if="company.price"
                     class="company-data__info company-data__info--bold"
-                    >{{ parseNumber.price }} {{ company.currency }}</span
+                    >{{ parseData.price }} {{ company.currency }}</span
                 >
                 <span
                     v-if="company.change"
                     :class="classObject"
                     class="company-data__info"
-                    >{{ parseNumber.change }} ({{ company.changePercent }})
+                    >{{ parseData.change }} ({{ parseData.changePercent }})
                     <component :is="setArrow"></component
                 ></span>
                 <span class="company-data__info"
@@ -70,13 +70,16 @@ export default {
                 ? this.company.logo
                 : "https://via.placeholder.com/64x64";
         },
-        parseNumber() {
-            const { change, price } = this.company;
+        parseData() {
+            const { change, changePercent, price } = this.company;
 
-            if (change && price) {
+            if (change && price && changePercent) {
                 return {
-                    change: parseFloat(change),
-                    price: parseFloat(price),
+                    change: parseFloat(change).toFixed(2),
+                    price: parseFloat(price).toFixed(2),
+                    changePercent: `${parseFloat(
+                        changePercent.replace("%", "")
+                    ).toFixed(2)}%`,
                 };
             }
 
@@ -86,7 +89,7 @@ export default {
             };
         },
         getChange() {
-            return this.parseNumber.change > 0;
+            return this.parseData.change > 0;
         },
         classObject() {
             return {
