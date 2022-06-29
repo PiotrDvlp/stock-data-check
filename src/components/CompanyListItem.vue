@@ -31,10 +31,15 @@
                 <span class="company-data__info">{{ company.timezone }}</span>
             </div>
             <div class="company-data__stock">
-                <span class="company-data__info company-data__info--bold"
+                <span
+                    v-if="company.price"
+                    class="company-data__info company-data__info--bold"
                     >{{ parseNumber.price }} {{ company.currency }}</span
                 >
-                <span :class="classObject" class="company-data__info"
+                <span
+                    v-if="company.change"
+                    :class="classObject"
+                    class="company-data__info"
                     >{{ parseNumber.change }} ({{ company.changePercent }})
                     <component :is="setArrow"></component
                 ></span>
@@ -66,9 +71,18 @@ export default {
                 : "https://via.placeholder.com/64x64";
         },
         parseNumber() {
+            const { change, price } = this.company;
+
+            if (change && price) {
+                return {
+                    change: parseFloat(change),
+                    price: parseFloat(price),
+                };
+            }
+
             return {
-                change: parseFloat(this.company.change),
-                price: parseFloat(this.company.price),
+                change: "No Data",
+                price: "No Data",
             };
         },
         getChange() {
