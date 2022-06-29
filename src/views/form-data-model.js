@@ -17,6 +17,7 @@ export default {
             chosenCompanies: [],
             chosenCompany: null,
             error: null,
+            loading: false,
         };
     },
     created() {
@@ -69,6 +70,8 @@ export default {
             this.getAdditionalCompanyData(companyName);
         },
         async getAdditionalCompanyData(companyName) {
+            this.loading = true;
+
             try {
                 const getClearbitData = ApiService.getClearbitData(companyName);
                 const getAlphavData = ApiService.getAlphavData(
@@ -89,6 +92,8 @@ export default {
             } catch (error) {
                 this.error = error.response;
                 console.error(this.response);
+            } finally {
+                this.loading = false;
             }
         },
         setAdditionalData(clearbitData, alphaVData) {
@@ -131,6 +136,7 @@ export default {
             addCompany: this.addCompany,
             chosenCompanies: this.chosenCompanies,
             companies: this.companies,
+            loading: this.loading,
             selectCompany: this.selectCompany,
         });
     },

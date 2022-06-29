@@ -10,6 +10,7 @@ export default {
         return {
             chosenCompanies: [],
             error: null,
+            loading: false,
         };
     },
     created() {
@@ -26,6 +27,7 @@ export default {
             const preparedApiCalls = this.chosenCompanies.map(({ symbol }) =>
                 ApiService.getAlphavInterday(symbol)
             );
+            this.loading = true;
 
             try {
                 const response = await Promise.all(preparedApiCalls);
@@ -33,6 +35,8 @@ export default {
                 this.formatLatestData(response);
             } catch (error) {
                 console.error(error);
+            } finally {
+                this.loading = false;
             }
         },
         formatLatestData(response) {
