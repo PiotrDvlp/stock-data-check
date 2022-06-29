@@ -1,8 +1,11 @@
 <template>
-    <b-col cols="3">
+    <b-col cols="3" class="d-flex justify-content-center align-center">
         <form-data-model :filter="companySymbol">
-            <template v-slot="{ addCompany, companies, selectCompany }">
-                <b-form @submit.prevent="addCompany">
+            <template
+                v-slot="{ addCompany, companies, loading, selectCompany }"
+            >
+                <b-spinner v-if="loading" class="m-5"></b-spinner>
+                <b-form v-else @submit.prevent="addCompany">
                     <b-form-group
                         id="input-group-1"
                         label="Company symbol:"

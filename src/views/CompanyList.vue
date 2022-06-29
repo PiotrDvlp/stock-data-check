@@ -1,9 +1,13 @@
 <template>
     <b-col cols="4">
         <company-list-model>
-            <template v-slot="{ chosenCompanies, removeFromList }">
+            <template v-slot="{ chosenCompanies, loading, removeFromList }">
                 <div>
-                    <ul v-if="chosenCompanies.length" class="company__list">
+                    <b-spinner v-if="loading" class="m-5"></b-spinner>
+                    <ul
+                        v-else-if="chosenCompanies.length && !loading"
+                        class="company__list"
+                    >
                         <company-list-item
                             v-for="company in chosenCompanies"
                             :company="company"
