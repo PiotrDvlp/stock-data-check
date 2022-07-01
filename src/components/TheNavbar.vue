@@ -8,9 +8,8 @@
 
                 <b-collapse id="nav-text-collapse" is-nav>
                     <b-navbar-nav>
-                        <router-link to="/">Track New Company</router-link>
-                        |
-                        <router-link to="/company-list">Companies</router-link>
+                        <b-nav-item to="/">Track New Company</b-nav-item>
+                        <b-nav-item to="/company-list">Companies</b-nav-item>
                     </b-navbar-nav>
                 </b-collapse>
             </b-container>
@@ -24,4 +23,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.router-link-exact-active {
+    border-bottom: 1px solid black;
+}
+</style>
