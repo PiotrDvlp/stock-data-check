@@ -1,53 +1,58 @@
 <template>
     <li
-        class="company-data d-flex flex-row py-2"
+        class="company-data"
         @mouseover="showRemoveOption = true"
         @mouseleave="showRemoveOption = false"
     >
-        <span
-            v-show="showRemoveOption"
-            class="company-data__remove"
-            @click="removeCompany"
-        >
-            <b-icon-x-lg class=""></b-icon-x-lg>
-        </span>
-        <div class="company-data__logo">
-            <b-img :src="setImage" fluid />
-        </div>
-        <div class="company-data__details">
-            <div class="company-data__name">
-                <span
-                    class="company-data__info company-data__info--bold compaenvny-data__info--big"
-                    >{{ company.name }}</span
-                >
-                <span class="company-data__info">{{ company.symbol }}</span>
-                <span class="company-data__info">{{ company.domain }}</span>
+        <b-card no-body class="d-flex flex-row p-2">
+            <span
+                v-show="showRemoveOption"
+                class="company-data__remove"
+                @click="removeCompany"
+            >
+                <b-icon-x-lg class=""></b-icon-x-lg>
+            </span>
+            <div class="company-data__logo">
+                <b-img :src="setImage" fluid />
             </div>
-            <div class="company-data__local">
-                <span class="company-data__info">{{ company.region }}</span>
-                <span class="company-data__info"
-                    >{{ company.marketOpen }} - {{ company.marketClose }}</span
-                >
-                <span class="company-data__info">{{ company.timezone }}</span>
+            <div class="company-data__details">
+                <div class="company-data__name">
+                    <span
+                        class="company-data__info company-data__info--bold compaenvny-data__info--big"
+                        >{{ company.name }}</span
+                    >
+                    <span class="company-data__info">{{ company.symbol }}</span>
+                    <span class="company-data__info">{{ company.domain }}</span>
+                </div>
+                <div class="company-data__local">
+                    <span class="company-data__info">{{ company.region }}</span>
+                    <span class="company-data__info"
+                        >{{ company.marketOpen }} -
+                        {{ company.marketClose }}</span
+                    >
+                    <span class="company-data__info">{{
+                        company.timezone
+                    }}</span>
+                </div>
+                <div class="company-data__stock">
+                    <span
+                        v-if="company.price"
+                        class="company-data__info company-data__info--bold"
+                        >{{ parseNumber.price }} {{ company.currency }}</span
+                    >
+                    <span
+                        v-if="company.change"
+                        :class="classObject"
+                        class="company-data__info"
+                        >{{ parseNumber.change }} ({{ company.changePercent }})
+                        <component :is="setArrow"></component
+                    ></span>
+                    <span class="company-data__info"
+                        >Closed: {{ company.latestTradingDay }}</span
+                    >
+                </div>
             </div>
-            <div class="company-data__stock">
-                <span
-                    v-if="company.price"
-                    class="company-data__info company-data__info--bold"
-                    >{{ parseNumber.price }} {{ company.currency }}</span
-                >
-                <span
-                    v-if="company.change"
-                    :class="classObject"
-                    class="company-data__info"
-                    >{{ parseNumber.change }} ({{ company.changePercent }})
-                    <component :is="setArrow"></component
-                ></span>
-                <span class="company-data__info"
-                    >Closed: {{ company.latestTradingDay }}</span
-                >
-            </div>
-        </div>
+        </b-card>
     </li>
 </template>
 
