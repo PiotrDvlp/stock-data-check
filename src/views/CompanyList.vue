@@ -46,6 +46,7 @@ export default {
 .company {
     &__list {
         padding: 0;
+        list-style-type: none;
     }
 }
 </style>
